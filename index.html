@@ -7,7 +7,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>	
     <title>Titre de la page</title>
 
-    <title>OUR NAME</title>
     <!-- <meta name="description" content="The HTML5 Herald"> 
   <meta name="author" content="SitePoint"> -->
 
@@ -20,8 +19,15 @@
 </head>
 
 <body>
-    <input type="button" onclick="findInformation()" value="Find Informations">
-    <input type="button" onclick="findReceipes()" value="Find Receipes">
+    <input type="text" id="req" placeholder="Rechercher"
+	<button id="target">Rechercher</button>
+	<div id="result"></div>
+    
+    <br/>
+    <br/>
+    
+    <input type="button" onclick="findInformation()" value="TEST JS Find Informations">
+    <input type="button" onclick="findReceipes()" value="TEST JS Find Receipes">
 
     <p id="result_place">
 
