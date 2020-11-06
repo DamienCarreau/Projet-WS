@@ -1,18 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
+
+<html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <title>Titre de la page</title>
-  <style type="text/css">
-  	body{
-  		text-align: center;
-  	}
-  </style>
+    <meta charset="utf-8">
+
+    <title>OUR NAME</title>
+    <!-- <meta name="description" content="The HTML5 Herald"> 
+  <meta name="author" content="SitePoint"> -->
+
+    <!-- TODO add stylesheet <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+
+    <script src="js/aliment.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        console.log("test");
+    </script>
 </head>
+
 <body>
-	<input type="text" id="req" placeholder="Rechercher">
-	<button id="target">Rechercher</button>
-	<div id="result"></div>
+    <input type="button" onclick="findInformation()" value="Find Informations">
+    <input type="button" onclick="findReceipes()" value="Find Receipes">
+
+    <p id="result_place">
+
+    </p>
 </body>
-<script type="text/javascript" src="script.js"></script>
+
 </html>
