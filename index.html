@@ -1,41 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
+
+<html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <title>Titre de la page</title>
-  <style type="text/css">
-    body{
-        display: flex;
-        flex-wrap: wrap;
-    }
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>	
+    <title>Titre de la page</title>
 
-    #categories, #alimentsPlats{
-        flex-basis: 49%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    <!-- <meta name="description" content="The HTML5 Herald"> 
+  <meta name="author" content="SitePoint"> -->
 
-    #button{
-        width: 100%;
-        text-align: center;
-    }
+    <!-- TODO add stylesheet <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
 
-    #button input{
-        width: 50%;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-  </style>
+    <script src="js/aliment.js" type="text/javascript"></script>
+    <script type="text/javascript" src="script.js"></script>
 </head>
+
 <body>
-    <div id="button">
-        <input type="text" id="req" placeholder="Rechercher">
-        <input type="submit" id="target" value="Rechercher">
-    </div>
-    <div id="categories"></div>
-    <div id="alimentsPlats"></div>
+    <input type="text" id="req" placeholder="Rechercher"
+	<button id="target">Rechercher</button>
+	<div id="result"></div>
+    
+    <br/>
+    <br/>
+    
+    <input type="button" onclick="findInformation()" value="TEST JS Find Informations">
+    <input type="button" onclick="findReceipes()" value="TEST JS Find Receipes">
+
+    <p id="result_place">
+
+    </p>
 </body>
-<script type="text/javascript" src="script.js"></script>
+
 </html>
