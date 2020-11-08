@@ -31,6 +31,17 @@ Projet de Web Sémantique 4IF, INSA Lyon
 
 ## Javascript
 
+### utils.js
+
+`readURL()`
+retourne les parametre de l'URL
+```
+{
+    + type
+    + uri
+}
+```
+
 ### aliment.js
 
 `findFoodInformations(String uri, function(JsonObject) onResult)`
