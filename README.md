@@ -20,7 +20,7 @@ Projet de Web Sémantique 4IF, INSA Lyon
 `findFoodInformations(String uri, function(JsonObject) onResult)`
 
 Resultat :
-```json
+```
 {
     generalInformations : {
         + label
