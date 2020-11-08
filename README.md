@@ -11,6 +11,22 @@ Projet de Web Sémantique 4IF, INSA Lyon
 * Enzo Boscher
 * Mickeal Ben Said
 
+## Navigatation
+
+### Paramètres
+
+`type`
+
+* `"food"`
+* `"productor"` ?
+* `"country"` ?
+* ... ?
+
+`uri`
+
+* lien total de l'uri
+  * ex : `http://dbpedia.org/resource/Meat`
+
 # Fichiers
 
 ## Javascript
@@ -19,7 +35,6 @@ Projet de Web Sémantique 4IF, INSA Lyon
 
 `findFoodInformations(String uri, function(JsonObject) onResult)`
 
-Resultat :
 ```
 {
     generalInformations : {
