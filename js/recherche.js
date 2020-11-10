@@ -12,15 +12,15 @@ function getAlimentsPlats(value){
   //La requête SPARQL à proprement parler
   var querySPARQL=
   'PREFIX dbo: <http://dbpedia.org/ontology/>\n'+
-  'SELECT DISTINCT ?res\n'+
+  'SELECT DISTINCT ?res ?plat\n'+
   'WHERE {{\n'+
   '?plat dbo:ingredient ?ingredient.\n'+
   '?ingredient rdfs:label ?res.\n'+
-  'FILTER (lang(?res) = "fr").\n'+
+  'FILTER (lang(?res) = "en").\n'+
   '} UNION {\n'+
   '?plat dbo:ingredient ?ingredient.\n'+
   '?plat rdfs:label ?res.\n'+
-  'FILTER (lang(?res) = "fr").\n'+
+  'FILTER (lang(?res) = "en").\n'+
   '}\n';
   if(value.length !== 0)
     querySPARQL += 'FILTER regex(?res,"'+document.getElementById("req").value+'","i")\n';
@@ -43,8 +43,9 @@ function getAlimentsPlats(value){
       var div = $("#listAll");
       $.each(doc.results.bindings,
         function (index, element) {
-          div.append($('<div>',{
-            "text": element.res.value
+          div.append($('<a>',{
+            "text": element.res.value,
+            "href": "./foods.html?data="+(element.plat.value).substr(28)
           }));
         });
     }

@@ -27,13 +27,17 @@ $('document').ready(function () {
 function getCategories(res,value){
     //La requête SPARQL à proprement parler
   var querySPARQL=""+
-    'SELECT ?isValueOf\n'+
+    'SELECT ?isValueOf ?trad1 ?trad2\n'+
     'WHERE {\n'+
-    '    { ?isValueOf skos:broader <http://dbpedia.org/resource/Category:'+res+'>\n';
+    '    { ?isValueOf skos:broader <http://dbpedia.org/resource/Category:'+res+'>.\n'+
+    '    ?isValueOf rdfs:label ?trad1.\n'+
+    '    FILTER (lang(?trad1) = "en").\n';
     if(value.length !== 0)
       querySPARQL += 'FILTER regex(substr(str(?isValueOf),38),"'+document.getElementById("req").value+'","i")\n';
     querySPARQL += '}UNION\n'+
-    '    { ?isValueOf <http://purl.org/dc/terms/subject> <http://dbpedia.org/resource/Category:'+res+'>\n';
+    '    { ?isValueOf <http://purl.org/dc/terms/subject> <http://dbpedia.org/resource/Category:'+res+'>.\n'+
+    '    ?isValueOf rdfs:label ?trad2.\n'+
+    '    FILTER (lang(?trad2) = "en").\n';
     if(value.length !== 0)
       querySPARQL += 'FILTER regex(?isValueOf,"'+document.getElementById("req").value+'","i")\n';
     querySPARQL += '}}\nORDER BY (?isValueOf)';
@@ -59,18 +63,20 @@ function getCategories(res,value){
       var lies = $('#ingredientsLies');
       $.each(doc.results.bindings,
         function (index, element) {
-          if((element.isValueOf.value).search("Category") !== -1){
-            var d = $('<div>');
-            d.append($('<a>',{
-              "text": (element.isValueOf.value).substr(37),
-              "href": "?request="+(element.isValueOf.value).substr(37)
-            }));
-            categories.append(d);
-          }else{
-            lies.append($('<div>',{
-              "text": (element.isValueOf.value).substr(28)
-            }));
-          }
+        	try{
+        		var d = $('<div>');
+		        d.append($('<a>',{
+		          "text": element.trad1.value,
+		          "href": "?request="+(element.isValueOf.value).substr(37)
+		        }));
+		        categories.append(d);
+        	}catch(e){}
+        	try{
+        		var d = $('<div>');
+		        lies.append($('<div>',{
+	              "text": element.trad2.value
+	            }));
+        	}catch(e){} 
         });
    }
   };   // the handler
