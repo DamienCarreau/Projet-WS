@@ -8,29 +8,22 @@ $('document').ready(function () {
           .split("&")
           .forEach(function (item) {
               tmp = item.split("=");
-              if (tmp[0] === "request")
+              if (tmp[0] === "data")
                   res = decodeURIComponent(tmp[1]);
           });
+  /*        
   if (res === null) {
       alert("La recherche n'a pas été spécifié");
       return;
   }
+  */
 
   document.getElementById("txt").innerHTML = "Catégorie : "+res;
 
-  getCategories(res,"");
+  if (res) getCategories(res,"");
 
   $('#target').on('click', function () {
-    console.log("clixk")
-    let req = document.getElementById("req").value;
-    var tab = req.split(' ');
-    let reseach = '';
-    tab.forEach( (word, index) => {
-      if (index !== 0) reseach += '_';
-      reseach += word;
-    });
-    reseach = reseach.charAt(0).toUpperCase() + reseach.slice(1);
-    location.search = "?request=" + reseach;
+    document.location.href = "./recherche.html?data=" + document.getElementById("req").value;
   });
 });
 
@@ -75,7 +68,7 @@ function getCategories(res,value){
             var d = $('<div>');
             d.append($('<a>',{
               "text": (element.isValueOf.value).substr(37),
-              "href": "?request="+(element.isValueOf.value).substr(37)
+              "href": "?data="+(element.isValueOf.value).substr(37)
             }));
             categories.append(d);
           }else{

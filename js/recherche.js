@@ -19,8 +19,7 @@ if (res === null) {
 getAlimentsPlats(res);
 
 $('#target').on('click', function () {
-  let req = document.getElementById("req").value;
-  location.search = "?data=" + req;
+  location.search = "?data=" + document.getElementById("req").value;
 });
 });
 
