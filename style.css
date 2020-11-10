@@ -1,0 +1,58 @@
+body{
+    background-image: url(images/Nourriture.jpg);
+}
+p
+{
+    color: blue;
+}
+section h1{
+    font-size: xx-large;
+    text-align : center;
+    color :red;
+}
+section
+{
+    background: transparent;
+    margin-top: 15%;
+    color : green;
+    width : 30%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+}
+.input_field{
+    border-radius: 5px;
+}
+
+.input
+{
+    text-align : center;
+}
+
+.bouton
+{
+    text-align: center;
+}
+
+.btn-grad {background-image: linear-gradient(to right, #FC354C 0%, #0ABFBC  51%, #FC354C  100%)}
+.btn-grad {
+   margin-left: auto;
+   margin-right: auto;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+ }
+
+ .btn-grad:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+
