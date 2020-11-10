@@ -1,10 +1,27 @@
 $('document').ready(function() {
 
-    getAlimentsPlats("");
+var search;
+var res = null,
+tmp = [];
+location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+            tmp = item.split("=");
+            if (tmp[0] === "request")
+                res = decodeURIComponent(tmp[1]);
+        });
+if (res === null) {
+    alert("La recherche n'a pas été spécifié");
+    return;
+}
 
-    $('#target').on('click', function() {
-        getAlimentsPlats(document.getElementById("req").value);
-    });
+getAlimentsPlats(res);
+
+$('#target').on('click', function () {
+  let req = document.getElementById("req").value;
+  location.search = "?request=" + req;
+});
 });
 
 function getAlimentsPlats(value) {

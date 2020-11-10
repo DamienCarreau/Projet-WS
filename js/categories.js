@@ -1,9 +1,5 @@
-/*
-TODO: un moyen de que la recherche de "Vegetable" ressorte le même resultat que "Vegetables"
-la category "Vegetable" n'existe pas, on doit chercher "Vegetables" pour avoir des resulats
-*/
-
 $('document').ready(function () {
+
   var search;
   var res = null,
   tmp = [];
@@ -12,7 +8,7 @@ $('document').ready(function () {
           .split("&")
           .forEach(function (item) {
               tmp = item.split("=");
-              if (tmp[0] === "data")
+              if (tmp[0] === "request")
                   res = decodeURIComponent(tmp[1]);
           });
   if (res === null) {
@@ -25,20 +21,22 @@ $('document').ready(function () {
   getCategories(res,"");
 
   $('#target').on('click', function () {
-      getCategories(res,document.getElementById("req").value)
+    console.log("clixk")
+    let req = document.getElementById("req").value;
+    var tab = req.split(' ');
+    let reseach = '';
+    tab.forEach( (word, index) => {
+      if (index !== 0) reseach += '_';
+      reseach += word;
+    });
+    reseach = reseach.charAt(0).toUpperCase() + reseach.slice(1);
+    location.search = "?request=" + reseach;
   });
 });
 
-function getCategories(reseach,value){
+function getCategories(res,value){
+  console.log(res)
     //La requête SPARQL à proprement parler
-  var tab = reseach.split(' ');
-  let res = '';
-  tab.forEach( (word, index) => {
-    if (index !== 0) res += '_';
-    res += word;
-  });
-  res = res.charAt(0).toUpperCase() + res.slice(1);
-
   var querySPARQL=""+
     'SELECT ?isValueOf\n'+
     'WHERE {\n'+
