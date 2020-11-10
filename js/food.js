@@ -1,10 +1,3 @@
-//TODO change the way of specifying searched data
-// data = new URL(document.location.href).searchParams.get("data");
-
-// var uri = 'http://dbpedia.org/resource/' + data;
-
-
-
 var basePrefixes = "" +
     'PREFIX dbo: <http://dbpedia.org/ontology/> ' +
     'PREFIX dbr: <http://dbpedia.org/resource/> ' +
