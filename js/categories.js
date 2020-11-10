@@ -1,3 +1,8 @@
+/*
+TODO: un moyen de que la recherche de "Vegetable" ressorte le même resultat que "Vegetables"
+la category "Vegetable" n'existe pas, on doit chercher "Vegetables" pour avoir des resulats
+*/
+
 $('document').ready(function () {
   var search;
   var res = null,
@@ -24,8 +29,16 @@ $('document').ready(function () {
   });
 });
 
-function getCategories(res,value){
+function getCategories(reseach,value){
     //La requête SPARQL à proprement parler
+  var tab = reseach.split(' ');
+  let res = '';
+  tab.forEach( (word, index) => {
+    if (index !== 0) res += '_';
+    res += word;
+  });
+  res = res.charAt(0).toUpperCase() + res.slice(1);
+
   var querySPARQL=""+
     'SELECT ?isValueOf ?trad1 ?trad2\n'+
     'WHERE {\n'+
@@ -41,6 +54,7 @@ function getCategories(res,value){
     if(value.length !== 0)
       querySPARQL += 'FILTER regex(?isValueOf,"'+document.getElementById("req").value+'","i")\n';
     querySPARQL += '}}\nORDER BY (?isValueOf)';
+  
     
 
   // On prépare l'URL racine (aussi appelé ENDPOINT) pour interroger DBPedia (ici en français)
@@ -48,7 +62,7 @@ function getCategories(res,value){
 
   // On construit donc notre requête à partir de cette baseURL
   var queryURL = baseURL + "?" + "query="+ encodeURIComponent(querySPARQL) + "&format=json";
-
+  console.log(queryURL)
   //On crée notre requête AJAX
   var req = new XMLHttpRequest();
   req.open("GET", queryURL, true);
@@ -72,9 +86,9 @@ function getCategories(res,value){
 		        categories.append(d);
         	}catch(e){}
         	try{
-        		var d = $('<div>');
-		        lies.append($('<div>',{
-	              "text": element.trad2.value
+		        lies.append($('<a>',{
+	              "text": element.trad2.value,
+                "href": "./food.html?data="+(element.isValueOf.value).substr(28)
 	            }));
         	}catch(e){} 
         });
