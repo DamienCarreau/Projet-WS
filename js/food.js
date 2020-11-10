@@ -1,8 +1,3 @@
-//TODO change the way of specifying searched data
-// data = new URL(document.location.href).searchParams.get("data");
-
-// var uri = 'http://dbpedia.org/resource/' + data;
-
 var basePrefixes = "" +
     'PREFIX dbo: <http://dbpedia.org/ontology/> ' +
     'PREFIX dbr: <http://dbpedia.org/resource/> ' +
@@ -188,7 +183,7 @@ function findGeneralInformations(uri, onResult) {
 /**
  * findComposition
  * Trouve les informations sur la composition / les valeurs nutritives
- *  {
+ * {
  *      ? betacaroteneUg
  *      ? ... (voir sur docs)
  * }
@@ -432,4 +427,27 @@ function queryData(querySPARQL, onResult) {
 
 function goToObject(object) {
     document.location.href = "./index.html?data=" + object;
+}
+
+function populatePage(values) {
+    console.log(values);
+    document.title = values.generalInformations.label.value;
+
+    var titleStr = values.generalInformations.label.value;
+    if (values.generalInformations.alias != undefined) {
+        titleStr += " (" + values.generalInformations.alias.value + ")";
+    }
+    document.querySelector("h1").innerText = titleStr;
+
+    document.querySelector("#thumbnail").src = values.generalInformations.thumbnail.value;
+
+    document.querySelector("#description").innerText = values.generalInformations.abstract.value;
+}
+
+var data = new URL(document.location.href).searchParams.get("data");
+
+if (data != undefined) {
+    var uri = 'http://dbpedia.org/resource/' + data;
+
+    findFoodInformations(uri, populatePage);
 }
