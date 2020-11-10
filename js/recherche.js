@@ -64,13 +64,13 @@ function getAlimentsPlats(value){
         function (index, element) {
           try{
             div.append($('<a>',{
-              "text": element.res.value+" - "+(element.value.value).substr(28),
+              "text": element.res.value,
               "href": "./food.html?data="+(element.value.value).substr(28)
             }));
           }catch(e){}
           try{
             div.append($('<a>',{
-              "text": element.res.value+" - "+(element.x.value).substr(37),
+              "text": element.res.value,
               "href": "./categories.html?data="+(element.x.value).substr(37)
             }));
           }catch(e){}
