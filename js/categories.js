@@ -12,7 +12,7 @@ $('document').ready(function () {
           .split("&")
           .forEach(function (item) {
               tmp = item.split("=");
-              if (tmp[0] === "request")
+              if (tmp[0] === "data")
                   res = decodeURIComponent(tmp[1]);
           });
   if (res === null) {
