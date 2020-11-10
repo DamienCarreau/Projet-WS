@@ -45,7 +45,7 @@ function getAlimentsPlats(value){
         function (index, element) {
           div.append($('<a>',{
             "text": element.res.value,
-            "href": "./foods.html?data="+(element.plat.value).substr(28)
+            "href": "./food.html?data="+(element.plat.value).substr(28)
           }));
         });
     }
