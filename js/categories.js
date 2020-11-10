@@ -1,3 +1,8 @@
+/*
+TODO: un moyen de que la recherche de "Vegetable" ressorte le même resultat que "Vegetables"
+la category "Vegetable" n'existe pas, on doit chercher "Vegetables" pour avoir des resulats
+*/
+
 $('document').ready(function () {
   var search;
   var res = null,
@@ -24,7 +29,15 @@ $('document').ready(function () {
   });
 });
 
-function getCategories(res,value){
+function getCategories(reseach,value){
+    //La requête SPARQL à proprement parler
+  var tab = reseach.split(' ');
+  let res = '';
+  tab.forEach( (word, index) => {
+    if (index !== 0) res += '_';
+    res += word;
+  });
+  res = res.charAt(0).toUpperCase() + res.slice(1);
 
   var querySPARQL=""+
     'SELECT ?isValueOf\n'+
@@ -68,9 +81,9 @@ function getCategories(res,value){
             }));
             categories.append(d);
           }else{
-            lies.append($('<div>',{
+            lies.append($('<a>',{
               "text": (element.isValueOf.value).substr(28),
-              "href": "?request="+(element.isValueOf.value).substr(37)
+              "href": "./food.html?data="+(element.isValueOf.value).substr(28)
             }));
           }
         });
