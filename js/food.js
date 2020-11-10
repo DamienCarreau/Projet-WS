@@ -163,7 +163,7 @@ function findGeneralInformations(uri, onResult) {
         '  ?link rdfs:label ?label . ' +
         '  FILTER(lang(?label) = "en")' +
         '} ' +
-        'LIMIT 50';
+        'LIMIT 20';
 
     var finalResult = null;
     queryData(queryBasics, function(result) {
@@ -429,19 +429,156 @@ function goToObject(object) {
     document.location.href = "./index.html?data=" + object;
 }
 
+function extractResourceName(link) {
+    return link.substring(link.lastIndexOf("/") + 1);
+}
+
 function populatePage(values) {
     console.log(values);
+    // Name 
     document.title = values.generalInformations.label.value;
 
     var titleStr = values.generalInformations.label.value;
     if (values.generalInformations.alias != undefined) {
-        titleStr += " (" + values.generalInformations.alias.value + ")";
+        titleStr += " (or " + values.generalInformations.alias.value + ")";
     }
     document.querySelector("h1").innerText = titleStr;
 
+    // Image (thumbnail)
     document.querySelector("#thumbnail").src = values.generalInformations.thumbnail.value;
 
+    // Description (abstract)
     document.querySelector("#description").innerText = values.generalInformations.abstract.value;
+
+    // List of types
+    typeList = document.querySelector("#types_list");
+    var empty = true;
+    for (var i = 0; i < values.generalInformations.descendingTypes.length; i++) {
+        var type = values.generalInformations.descendingTypes[i];
+        var el = document.createElement("li");
+        var link = document.createElement("a");
+        link.href = "./food.html?data=" + extractResourceName(type.link.value);
+        link.textContent = type.label.value;
+        el.appendChild(link);
+        typeList.appendChild(el);
+        empty = false;
+    }
+    if (empty) {
+        document.querySelector("#types_title").innerText = "";
+    }
+
+    // Composition
+    compoList = document.querySelector("#composition");
+    var empty = true;
+    for (var compoType in values.composition) {
+        if (compoType != undefined) {
+            var el = document.createElement("li");
+            console.log(compoType);
+            var comp = compoType + ": " + values.composition[compoType].value;
+            el.innerText = comp;
+            compoList.appendChild(el);
+            empty = false;
+        }
+    }
+    if (empty) {
+        document.querySelector("#composition_title").innerText = "";
+    }
+
+    // Origin 
+    // Region
+    var regionName = values.origin.region;
+    if (regionName != undefined) {
+        document.querySelector("#region").innerText = regionName.value;
+    }
+
+    // Countries
+    countriesList = document.querySelector("#countries_list");
+    empty = true;
+    for (var i = 0; i < values.origin.countries.length; i++) {
+        var country = values.origin.countries[i];
+        var el = document.createElement("li");
+        if (country.link != undefined) {
+            var link = document.createElement("a");
+            // TODO page for a contry -- 
+            // link.href = "./food.html?data=" + extractResourceName(country.link.value);
+            link.textContent = country.label.value;
+            el.appendChild(link);
+        } else {
+            el.textContent = country.label.value;
+        }
+        countriesList.appendChild(el);
+        empty = false;
+    }
+    if (empty) {
+        document.querySelector("#countries_title").innerText = "";
+    }
+
+    // Productors
+    productorsList = document.querySelector("#productors_list");
+    empty = true;
+    for (var i = 0; i < values.origin.productors.length; i++) {
+        var productor = values.origin.productors[i];
+        var el = document.createElement("li");
+        var link = document.createElement("a");
+        // TODO page for a productor -- 
+        // link.href = "./food.html?data=" + extractResourceName(productor.link.value);
+        link.textContent = productor.label.value;
+        el.appendChild(link);
+        productorsList.appendChild(el);
+        empty = false;
+    }
+    if (empty) {
+        document.querySelector("#productors_title").innerText = "";
+    }
+
+    // Usage
+    // Serving info
+    var servingInfo = "";
+    var servingSize = values.usage.servingSize;
+    if (servingSize != undefined) {
+        servingInfo += "Serving size : " + servingSize.value + "g\n";
+    }
+    var servingTemperature = values.usage.servingTemperature;
+    if (servingTemperature != undefined) {
+        servingInfo += "Serving temperature : " + servingTemperature.value;
+    }
+    if (servingInfo != "") {
+        document.querySelector("#serving").innerText = servingInfo.trim();
+    }
+
+    // Receipes
+    receipesList = document.querySelector("#receipes_list");
+    empty = true;
+    for (var i = 0; i < values.usage.receipes.length; i++) {
+        var receipe = values.usage.receipes[i];
+        var el = document.createElement("li");
+        var link = document.createElement("a");
+        link.href = "./food.html?data=" + extractResourceName(receipe.link.value);
+        link.textContent = receipe.label.value;
+        el.appendChild(link);
+        receipesList.appendChild(el);
+        empty = false;
+    }
+    if (empty) {
+        document.querySelector("#receipes_title").innerText = "";
+    }
+
+    // Ingredients
+    ingredientsList = document.querySelector("#ingredients_list");
+    empty = true;
+    for (var i = 0; i < values.usage.ingredients.length; i++) {
+        var ingredient = values.usage.ingredients[i];
+        var el = document.createElement("li");
+        var link = document.createElement("a");
+        link.href = "./food.html?data=" + extractResourceName(ingredient.link.value);
+        link.textContent = ingredient.label.value;
+        el.appendChild(link);
+        ingredientsList.appendChild(el);
+        empty = false;
+    }
+    if (empty) {
+        document.querySelector("#ingredients_title").innerText = "";
+    }
 }
 
 var data = new URL(document.location.href).searchParams.get("data");
