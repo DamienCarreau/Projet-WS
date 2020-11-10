@@ -8,7 +8,7 @@ location.search
         .split("&")
         .forEach(function (item) {
             tmp = item.split("=");
-            if (tmp[0] === "request")
+            if (tmp[0] === "data")
                 res = decodeURIComponent(tmp[1]);
         });
 if (res === null) {
@@ -20,7 +20,7 @@ getAlimentsPlats(res);
 
 $('#target').on('click', function () {
   let req = document.getElementById("req").value;
-  location.search = "?request=" + req;
+  location.search = "?data=" + req;
 });
 });
 
