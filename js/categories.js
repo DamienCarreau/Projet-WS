@@ -62,6 +62,9 @@ function getCategories(res,value){
 
       var categories = $("#categories");
       var lies = $('#ingredientsLies');
+
+      document.getElementById("loader").style.display = "none";
+
       $.each(doc.results.bindings,
         function (index, element) {
           if((element.isValueOf.value).search("Category") !== -1){
