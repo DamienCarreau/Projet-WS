@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -27,13 +28,39 @@
         width: 50%;
     }
 
+
+    #loader {
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+    }
+    
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
   </style>
 </head>
 <body>
     <div id="button">
         <input type="text" id="req" placeholder="Rechercher">
         <input type="submit" id="target" value="Rechercher">
+
     </div>
-    <div id="listAll"></div>
+    <div id="listAll">
+        <div id="loader"></div>
+    </div>
+   
 </body>
 </html>

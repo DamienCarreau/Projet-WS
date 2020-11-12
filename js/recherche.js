@@ -1,26 +1,26 @@
 $('document').ready(function() {
 
-var search;
-var res = null,
-tmp = [];
-location.search
-        .substr(1)
-        .split("&")
-        .forEach(function (item) {
-            tmp = item.split("=");
-            if (tmp[0] === "data")
-                res = decodeURIComponent(tmp[1]);
-        });
-if (res === null) {
-    alert("La recherche n'a pas été spécifié");
-    return;
-}
+    var search;
+    var res = null,
+    tmp = [];
+    location.search
+            .substr(1)
+            .split("&")
+            .forEach(function (item) {
+                tmp = item.split("=");
+                if (tmp[0] === "data")
+                    res = decodeURIComponent(tmp[1]);
+            });
+    if (res === null) {
+        alert("La recherche n'a pas été spécifié");
+        return;
+    }
 
-getAlimentsPlats(res);
+    getAlimentsPlats(res);
 
-$('#target').on('click', function () {
-  location.search = "?data=" + document.getElementById("req").value;
-});
+    $('#target').on('click', function () {
+    location.search = "?data=" + document.getElementById("req").value;
+    });
 });
 
 function getAlimentsPlats(value) {
