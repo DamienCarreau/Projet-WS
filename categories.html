@@ -3,11 +3,15 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/categories.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@500&display=swap" rel="stylesheet">   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Catégories</title>
   <link rel="stylesheet" href="css/categories.css">
 </head>
 <body>
-    <h1 id="txt"></h1>
+  <div class="topnav">
+    <a id="titre" class="active" href="#home" onclick="hideTab()">M!AM</a>
+    <div class="title" href="#about" id="homeButton">Information alimentaire</div>
+  </div>
     <div id="button">
         <input type="text" id="req" placeholder="Rechercher">
         <input type="submit" id="target" value="Rechercher">
@@ -15,7 +19,7 @@
     <div id="center">
       <div id="loader"></div>
     </div>
-
+    <h1 id="txt"></h1>
     <div id="corps">
       <div id="categories"></div>
       <div id="ingredientsLies"></div>

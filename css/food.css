@@ -1,6 +1,32 @@
 body {
+    background-color: #c1faef;
+    text-align: center;
     font-family: 'Open Sans', sans-serif;
 }
+
+#button {
+    padding-bottom: 10px;
+}
+
+#titre {
+    font-family: 'Big Shoulders Inline Display', cursive;
+}
+
+
+.topnav {
+    overflow: hidden;
+    background-color: #ccf5eb; 
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+}
+    .topnav a {
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: dotted;
+    font-size: 100px;
+}
+
 
 section {
     padding-left: 1%;
@@ -20,7 +46,7 @@ h1 {
     margin-bottom: 40px;
 }
 
-header {
+#recherche {
     width: 100%;
     text-align: center;
     margin-left: auto;
@@ -47,6 +73,7 @@ header {
     max-width: 15%;
     border-radius: 20px;
     margin-left: 10%;
+    margin-right: 10%;
     border: solid 3px black;
 }
 
@@ -54,9 +81,9 @@ header {
     display: inline-block;
     vertical-align: middle;
     min-height: 200px;
-    margin-left: 10%;
     max-width: 53%;
-    margin-right: 10%;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #ffcdd2;
 }
 

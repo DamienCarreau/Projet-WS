@@ -519,7 +519,11 @@ function populatePage(values) {
     }
 
     // Image (thumbnail)
-    document.querySelector("#thumbnail").src = values.generalInformations.thumbnail.value;
+    if (values.generalInformations.thumbnail != undefined)
+        document.querySelector("#thumbnail").src = values.generalInformations.thumbnail.value;
+    else
+        document.querySelector("#thumbnail").src = "images/erreur.jpg";
+
 
     // Description (abstract)
     document.querySelector("#description").innerText = values.generalInformations.abstract.value.trim();
