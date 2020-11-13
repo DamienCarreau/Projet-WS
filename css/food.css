@@ -11,7 +11,10 @@ h1{
 }
 
 #thumbnail{
+    display: inline-block;
+    vertical-align: middle;
     height: 200px;
+    max-width: 15%;
     border-radius: 20px;
     margin-left: 10%;
     border: solid 3px black;
@@ -19,6 +22,7 @@ h1{
 
 #general_informations{
     display: inline-block;
+    vertical-align: middle;
     min-height: 200px;
     margin-left: 10%;
     max-width: 53%;
