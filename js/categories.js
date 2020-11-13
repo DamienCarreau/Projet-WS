@@ -3,7 +3,7 @@ $('document').ready(function () {
   var data = getData();
   console.log(data);
   
-  document.getElementById("txt").innerHTML = "Catégorie : "+data;
+  document.getElementById("txt").innerHTML = data;
 
   getCategories(data,"");
 
