@@ -478,19 +478,27 @@ function extractResourceName(link) {
 }
 
 /**
+ * From a link, extract the part after the last ":", used to store only the category Name in 
+ * uri "dbpedia.org/resource/Category:"
+ * @param {String} link the link to extract the resource from
+ */
+function extractCategoryName(link) {
+    return link.substring(link.lastIndexOf(":") + 1);
+}
+
+/**
  * Populate the IHM from the values queried
  * @param {JsonObject} values json informations queried about the data 
  */
 function populatePage(values) {
     console.log(values);
     // 
-    try{
+    try {
         document.title = values.generalInformations.label.value;
-    }
-    catch(e){
+    } catch (e) {
         console.log(e);
         document.title = "Error";
-        document.querySelector("h1").innerText = "Error :"+data;
+        document.querySelector("h1").innerText = "Error :" + data;
         document.querySelector("#description").innerText = "Il n'y a aucune informations sur cette page"
         document.querySelector("#types_title").innerText = "";
         document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
@@ -501,13 +509,14 @@ function populatePage(values) {
         document.querySelector("#thumbnail").src = "images/erreur.jpg";
         return;
     }
-    
+
 
     var titleStr = values.generalInformations.label.value;
-    if (values.generalInformations.alias != undefined) {
-        titleStr += " (or " + values.generalInformations.alias.value + ")";
-    }
     document.querySelector("h1").innerText = titleStr;
+
+    if (values.generalInformations.alias != undefined) {
+        document.querySelector("#alias").innerText = "(Or " + values.generalInformations.alias.value + ")   ";
+    }
 
     // Image (thumbnail)
     document.querySelector("#thumbnail").src = values.generalInformations.thumbnail.value;
@@ -629,7 +638,7 @@ function populatePage(values) {
         receipesList.appendChild(el);
         emptyReceipes = false;
     }
-    
+
 
     // Ingredients
     ingredientsList = document.querySelector("#ingredients_list");
@@ -647,7 +656,7 @@ function populatePage(values) {
     if (emptyReceipes && emptyIngredients) {
         document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
         document.querySelector("#ingredients_list").innerText = "Aucune donnée trouvée";
-    }else{
+    } else {
         if (emptyReceipes) {
             document.querySelector("#receipes_title").innerText = "";
         }
@@ -655,7 +664,24 @@ function populatePage(values) {
             document.querySelector("#ingredients_title").innerText = "";
         }
     }
- 
+
+    // Categories
+    categoriesList = document.querySelector("#categories_list");
+    empty = true;
+    for (var i = 0; i < values.categories.length; i++) {
+        var category = values.categories[i];
+        var el = document.createElement("li");
+        var link = document.createElement("a");
+        // TODO page for a productor -- 
+        link.href = "./categories.html?data=" + extractCategoryName(category.link.value);
+        link.textContent = category.label.value;
+        el.appendChild(link);
+        categoriesList.appendChild(el);
+        empty = false;
+    }
+    if (empty) {
+        document.querySelector("#categories_list").innerText = "Aucune donnée trouvée";
+    }
 }
 
 /**
