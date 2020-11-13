@@ -592,7 +592,7 @@ function populatePage(values) {
 
     // Receipes
     receipesList = document.querySelector("#receipes_list");
-    empty = true;
+    emptyReceipes = true;
     for (var i = 0; i < values.usage.receipes.length; i++) {
         var receipe = values.usage.receipes[i];
         var el = document.createElement("li");
@@ -601,15 +601,13 @@ function populatePage(values) {
         link.textContent = receipe.label.value;
         el.appendChild(link);
         receipesList.appendChild(el);
-        empty = false;
+        emptyReceipes = false;
     }
-    if (empty) {
-        document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
-    }
+    
 
     // Ingredients
     ingredientsList = document.querySelector("#ingredients_list");
-    empty = true;
+    emptyIngredients = true;
     for (var i = 0; i < values.usage.ingredients.length; i++) {
         var ingredient = values.usage.ingredients[i];
         var el = document.createElement("li");
@@ -618,11 +616,20 @@ function populatePage(values) {
         link.textContent = ingredient.label.value;
         el.appendChild(link);
         ingredientsList.appendChild(el);
-        empty = false;
+        emptyIngredients = false;
     }
-    if (empty) {
+    if (emptyReceipes && emptyIngredients) {
+        document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
         document.querySelector("#ingredients_list").innerText = "Aucune donnée trouvée";
+    }else{
+        if (emptyReceipes) {
+            document.querySelector("#receipes_title").innerText = "";
+        }
+        if (emptyIngredients) {
+            document.querySelector("#ingredients_title").innerText = "";
+        }
     }
+ 
 }
 
 /**
