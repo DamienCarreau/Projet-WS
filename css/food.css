@@ -9,15 +9,19 @@ h1 {
     font-size: 100px;
 }
 
-#thumbnail {
+#thumbnail{
+    display: inline-block;
+    vertical-align: middle;
     height: 200px;
-    border-radius: 10px;
+    max-width: 15%;
+    border-radius: 20px;
     margin-left: 10%;
     border: solid 3px black;
 }
 
 #general_informations {
     display: inline-block;
+    vertical-align: middle;
     min-height: 200px;
     margin-left: 10%;
     max-width: 53%;
