@@ -1,6 +1,19 @@
 body {
     background-color: #c1faef;
     text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#button {
+    padding-bottom: 10px;
+}
+
+#titre {
+    font-family: 'Big Shoulders Inline Display', cursive;
+}
+
+.topnav {
+
 }
 
 
@@ -8,11 +21,6 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-}
-
-h1{
-    font-size: 100px;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .button {
@@ -29,6 +37,8 @@ h1{
 .topnav {
     overflow: hidden;
     background-color: #ccf5eb;
+    padding-bottom: 20px;
+    margin-bottom: 15px;
     
 }
     .topnav a {
@@ -39,9 +49,6 @@ h1{
     font-size: 100px;
 }
 
-.topnav .active:hover {
-    background-color: #66a0ff;
-}
 
 
 #loader {
