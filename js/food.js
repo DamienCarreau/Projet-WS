@@ -464,14 +464,19 @@ function queryData(querySPARQL, onResult) {
     }
 }
 
-function goToObject(object) {
-    document.location.href = "./index.html?data=" + object;
-}
-
+/**
+ * From a link, extract the part after the last "/", used to store only the resource Name in 
+ * uri "dbpedia.org/resource"
+ * @param {String} link the link to extract the resource from
+ */
 function extractResourceName(link) {
     return link.substring(link.lastIndexOf("/") + 1);
 }
 
+/**
+ * Populate the IHM from the values queried
+ * @param {JsonObject} values json informations queried about the data 
+ */
 function populatePage(values) {
     console.log(values);
     // Name 
@@ -487,7 +492,7 @@ function populatePage(values) {
     document.querySelector("#thumbnail").src = values.generalInformations.thumbnail.value;
 
     // Description (abstract)
-    document.querySelector("#description").innerText = values.generalInformations.abstract.value;
+    document.querySelector("#description").innerText = values.generalInformations.abstract.value.trim();
 
     // List of types
     typeList = document.querySelector("#types_list");
@@ -620,6 +625,9 @@ function populatePage(values) {
     }
 }
 
+/**
+ * A starting : get the data to query and query its informations 
+ */
 var data = new URL(document.location.href).searchParams.get("data");
 
 if (data != undefined) {
