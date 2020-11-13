@@ -1,11 +1,10 @@
-section{
+section {
     padding-left: 1%;
-    border-radius: 20px;
+    border-radius: 10px;
     border: solid 3px black;
-
 }
 
-h1{
+h1 {
     padding-left: 13%;
     font-size: 100px;
 }
@@ -20,53 +19,44 @@ h1{
     border: solid 3px black;
 }
 
-#general_informations{
+#general_informations {
     display: inline-block;
     vertical-align: middle;
     min-height: 200px;
     margin-left: 10%;
     max-width: 53%;
     margin-right: 10%;
-    background-color: grey;
+    background-color: #ffcdd2;
 }
 
-#vide{
+#vide {
     width: 100%;
     border: none;
 }
 
-#description{
+#description {
     display: inline-block;
     text-align: justify;
-    padding: 5%;
+    padding: 2%;
 }
 
-#comp{
+.basic-section {
     display: inline-block;
-    vertical-align:top;
+    vertical-align: top;
     margin-top: 10%;
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 22%;
-    background-color: aqua;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 27%;
 }
 
-#origin{
-    display: inline-block;
-    vertical-align:top;
-    margin-top: 10%;
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 20%;
-    background-color: brown;
+#comp {
+    background-color: #90caf9;
 }
 
-#usage{
-    display: inline-block;
-    vertical-align:top;
-    margin-top: 10%;
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 20%;
-    background-color: yellowgreen;
+#origin {
+    background-color: #c8e6c9;
+}
+
+#usage {
+    background-color: #e6ee9c;
 }
