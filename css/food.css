@@ -10,8 +10,14 @@ section {
 
 h1 {
     padding-left: 13%;
+    margin-bottom: 0px;
     font-size: 100px;
     font-family: 'Montserrat', sans-serif;
+}
+
+#alias {
+    padding-left: 13%;
+    margin-bottom: 40px;
 }
 
 header {
@@ -35,10 +41,9 @@ header {
     width: 50%;
 }
 
-#thumbnail{
+#thumbnail {
     display: inline-block;
     vertical-align: middle;
-    height: 200px;
     max-width: 15%;
     border-radius: 20px;
     margin-left: 10%;
