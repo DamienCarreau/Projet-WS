@@ -1,6 +1,15 @@
+#button {
+    padding-bottom: 10px;
+}
+
+#titre {
+    font-family: 'Big Shoulders Inline Display', cursive;
+}
+
 body {
     background-color: #c1faef;
     text-align: center;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -31,8 +40,10 @@ html, body {
 .topnav {
     overflow: hidden;
     background-color: #ccf5eb;
-    
+    padding-bottom: 20px;
+    margin-bottom: 15px;
 }
+
     .topnav a {
     display: block;
     color: black;
@@ -40,11 +51,6 @@ html, body {
     text-decoration: dotted;
     font-size: 100px;
 }
-
-.topnav .active:hover {
-    background-color: #66a0ff;
-}
-
 
 #loader {
     border: 16px solid #f3f3f3;
@@ -81,3 +87,4 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+}

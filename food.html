@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@500&display=swap" rel="stylesheet">   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Food</title>
 
     <!-- <meta name="description" content="The HTML5 Herald"> 
@@ -16,7 +17,11 @@
 </head>
 
 <body>
-    <header>
+    <div class="topnav">
+        <a id="titre" class="active" href="#home" onclick="hideTab()">M!AM</a>
+        <div class="title" href="#about" id="homeButton">Information alimentaire</div>
+    </div>
+    <div id="recherche">
         <form action="recherche.html" method="GET">
             <input id="txt" name="data" type="text" placeholder="Rechercher">
             <button id="button">Rechercher</button>
