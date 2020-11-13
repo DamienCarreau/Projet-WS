@@ -47,6 +47,7 @@ header {
     max-width: 15%;
     border-radius: 20px;
     margin-left: 10%;
+    margin-right: 10%;
     border: solid 3px black;
 }
 
@@ -54,9 +55,9 @@ header {
     display: inline-block;
     vertical-align: middle;
     min-height: 200px;
-    margin-left: 10%;
     max-width: 53%;
-    margin-right: 10%;
+    margin-left: auto;
+    margin-right: auto;
     background-color: #ffcdd2;
 }
 
