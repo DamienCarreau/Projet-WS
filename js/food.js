@@ -239,7 +239,10 @@ function findComposition(uri, onResult) {
  * findOrigin
  * Trouve les informations sur l'origine du prodtui
  * {
- *      ? region (Jamais vue)
+ *      ? region {
+ *          + label
+ *          + link
+ *      }
  *      + countries [
  *          + label
  *          ? link
@@ -257,7 +260,9 @@ function findOrigin(uri, onResult) {
     var queryRegion = basePrefixes +
         'SELECT * ' +
         'WHERE { ' +
-        '  <' + uri + '> dbo:region ?region . ' +
+        '  <' + uri + '> dbo:region ?link . ' +
+        '  ?link rdfs:label ?label ' +
+        '  FILTER(lang(?label) = "en") ' +
         '} ' +
         'LIMIT 1';
 
@@ -285,13 +290,12 @@ function findOrigin(uri, onResult) {
         '} ' +
         'LIMIT 50';
 
-    var finalResult = null;
+    var finalResult = {};
     queryData(queryRegion, function(result) {
         // on Result return the array of results or we only want 
         // the first row.
-        finalResult = result[0];
-        if (finalResult == undefined) {
-            finalResult = {};
+        if (result != undefined && result[0] != undefined) {
+            finalResult.region = result[0];
         }
         queryData(queryCountries, function(result) {
             finalResult.countries = result;
@@ -530,9 +534,14 @@ function populatePage(values) {
 
     // Origin 
     // Region
-    var regionName = values.origin.region;
-    if (regionName != undefined) {
-        document.querySelector("#region").innerText = regionName.value;
+    var region = values.origin.region;
+    if (region != undefined) {
+        var el = document.querySelector("#region");
+        el.innerText = "Region : ";
+        var link = document.createElement("a");
+        //link.href = region.link.value;
+        link.textContent = region.label.value;
+        el.appendChild(link);
     }
 
     // Countries
