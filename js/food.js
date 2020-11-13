@@ -239,7 +239,10 @@ function findComposition(uri, onResult) {
  * findOrigin
  * Trouve les informations sur l'origine du prodtui
  * {
- *      ? region (Jamais vue)
+ *      ? region {
+ *          + label
+ *          + link
+ *      }
  *      + countries [
  *          + label
  *          ? link
@@ -257,7 +260,9 @@ function findOrigin(uri, onResult) {
     var queryRegion = basePrefixes +
         'SELECT * ' +
         'WHERE { ' +
-        '  <' + uri + '> dbo:region ?region . ' +
+        '  <' + uri + '> dbo:region ?link . ' +
+        '  ?link rdfs:label ?label ' +
+        '  FILTER(lang(?label) = "en") ' +
         '} ' +
         'LIMIT 1';
 
@@ -285,13 +290,12 @@ function findOrigin(uri, onResult) {
         '} ' +
         'LIMIT 50';
 
-    var finalResult = null;
+    var finalResult = {};
     queryData(queryRegion, function(result) {
         // on Result return the array of results or we only want 
         // the first row.
-        finalResult = result[0];
-        if (finalResult == undefined) {
-            finalResult = {};
+        if (result != undefined && result[0] != undefined) {
+            finalResult.region = result[0];
         }
         queryData(queryCountries, function(result) {
             finalResult.countries = result;
@@ -464,14 +468,19 @@ function queryData(querySPARQL, onResult) {
     }
 }
 
-function goToObject(object) {
-    document.location.href = "./index.html?data=" + object;
-}
-
+/**
+ * From a link, extract the part after the last "/", used to store only the resource Name in 
+ * uri "dbpedia.org/resource"
+ * @param {String} link the link to extract the resource from
+ */
 function extractResourceName(link) {
     return link.substring(link.lastIndexOf("/") + 1);
 }
 
+/**
+ * Populate the IHM from the values queried
+ * @param {JsonObject} values json informations queried about the data 
+ */
 function populatePage(values) {
     console.log(values);
     // Name 
@@ -487,7 +496,7 @@ function populatePage(values) {
     document.querySelector("#thumbnail").src = values.generalInformations.thumbnail.value;
 
     // Description (abstract)
-    document.querySelector("#description").innerText = values.generalInformations.abstract.value;
+    document.querySelector("#description").innerText = values.generalInformations.abstract.value.trim();
 
     // List of types
     typeList = document.querySelector("#types_list");
@@ -525,9 +534,14 @@ function populatePage(values) {
 
     // Origin 
     // Region
-    var regionName = values.origin.region;
-    if (regionName != undefined) {
-        document.querySelector("#region").innerText = regionName.value;
+    var region = values.origin.region;
+    if (region != undefined) {
+        var el = document.querySelector("#region");
+        el.innerText = "Region : ";
+        var link = document.createElement("a");
+        //link.href = region.link.value;
+        link.textContent = region.label.value;
+        el.appendChild(link);
     }
 
     // Countries
@@ -587,7 +601,7 @@ function populatePage(values) {
 
     // Receipes
     receipesList = document.querySelector("#receipes_list");
-    empty = true;
+    emptyReceipes = true;
     for (var i = 0; i < values.usage.receipes.length; i++) {
         var receipe = values.usage.receipes[i];
         var el = document.createElement("li");
@@ -596,15 +610,13 @@ function populatePage(values) {
         link.textContent = receipe.label.value;
         el.appendChild(link);
         receipesList.appendChild(el);
-        empty = false;
+        emptyReceipes = false;
     }
-    if (empty) {
-        document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
-    }
+    
 
     // Ingredients
     ingredientsList = document.querySelector("#ingredients_list");
-    empty = true;
+    emptyIngredients = true;
     for (var i = 0; i < values.usage.ingredients.length; i++) {
         var ingredient = values.usage.ingredients[i];
         var el = document.createElement("li");
@@ -613,13 +625,25 @@ function populatePage(values) {
         link.textContent = ingredient.label.value;
         el.appendChild(link);
         ingredientsList.appendChild(el);
-        empty = false;
+        emptyIngredients = false;
     }
-    if (empty) {
+    if (emptyReceipes && emptyIngredients) {
+        document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
         document.querySelector("#ingredients_list").innerText = "Aucune donnée trouvée";
+    }else{
+        if (emptyReceipes) {
+            document.querySelector("#receipes_title").innerText = "";
+        }
+        if (emptyIngredients) {
+            document.querySelector("#ingredients_title").innerText = "";
+        }
     }
+ 
 }
 
+/**
+ * A starting : get the data to query and query its informations 
+ */
 var data = new URL(document.location.href).searchParams.get("data");
 
 if (data != undefined) {
