@@ -2,24 +2,23 @@ body {
     background-color: #c1faef;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
+    flex-direction: column;
 }
 
-#button {
-    padding-bottom: 10px;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
-
-#titre {
-    font-family: 'Big Shoulders Inline Display', cursive;
-}
-
 
 .topnav {
     overflow: hidden;
-    background-color: #ccf5eb; 
-    padding-bottom: 20px;
-    margin-bottom: 15px;
+    background-color: #ccf5eb;
+    padding-bottom: 1.25%;
+    margin-bottom: 1.75%;
 }
-    .topnav a {
+
+.topnav a {
     display: block;
     color: black;
     text-align: center;
@@ -27,11 +26,8 @@ body {
     font-size: 100px;
 }
 
-
-section {
-    padding-left: 1%;
-    border-radius: 10px;
-    border: solid 3px black;
+#maintitre {
+    font-family: 'Big Shoulders Inline Display', cursive;
 }
 
 h1 {
