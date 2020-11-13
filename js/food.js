@@ -520,7 +520,7 @@ function populatePage(values) {
         }
     }
     if (empty) {
-        document.querySelector("#composition_title").innerText = "";
+        document.querySelector("#composition").innerText = "Aucune donnée trouvée";
     }
 
     // Origin 
@@ -549,7 +549,7 @@ function populatePage(values) {
         empty = false;
     }
     if (empty) {
-        document.querySelector("#countries_title").innerText = "";
+        document.querySelector("#countries_list").innerText = "Aucune donnée trouvée";
     }
 
     // Productors
@@ -567,7 +567,7 @@ function populatePage(values) {
         empty = false;
     }
     if (empty) {
-        document.querySelector("#productors_title").innerText = "";
+        document.querySelector("#productors_list").innerText = "Aucune donnée trouvée";
     }
 
     // Usage
@@ -599,7 +599,7 @@ function populatePage(values) {
         empty = false;
     }
     if (empty) {
-        document.querySelector("#receipes_title").innerText = "";
+        document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
     }
 
     // Ingredients
@@ -616,7 +616,7 @@ function populatePage(values) {
         empty = false;
     }
     if (empty) {
-        document.querySelector("#ingredients_title").innerText = "";
+        document.querySelector("#ingredients_list").innerText = "Aucune donnée trouvée";
     }
 }
 
