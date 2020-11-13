@@ -1,58 +1,43 @@
-body{
-    background-image: url(images/Nourriture.jpg);
-}
-p
-{
-    color: blue;
-}
-section h1{
-    font-size: xx-large;
-    text-align : center;
-    color :red;
-}
-section
-{
-    background: transparent;
-    margin-top: 15%;
-    color : green;
-    width : 30%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 15px;
-}
-.input_field{
-    border-radius: 5px;
+#listAll{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: 100%;
 }
 
-.input
-{
-    text-align : center;
-}
-
-.bouton
-{
+#button{
+    width: 100%;
     text-align: center;
 }
 
-.btn-grad {background-image: linear-gradient(to right, #FC354C 0%, #0ABFBC  51%, #FC354C  100%)}
-.btn-grad {
-   margin-left: auto;
-   margin-right: auto;
-   padding: 15px 45px;
-   text-align: center;
-   text-transform: uppercase;
-   transition: 0.5s;
-   background-size: 200% auto;
-   color: white;            
-   box-shadow: 0 0 20px #eee;
-   border-radius: 10px;
-   display: block;
- }
-
- .btn-grad:hover {
-   background-position: right center; /* change the direction of the change here */
-   color: #fff;
-   text-decoration: none;
- }
+#button input{
+    width: 50%;
+}
 
 
+#loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
