@@ -68,6 +68,10 @@ usage
             + link
         ]
     }
+categories [
+    + label
+    + link
+]
 */
 
 /**
@@ -78,7 +82,7 @@ usage
  */
 function findFoodInformations(uri, onResult) {
     var count = 0;
-    var totalCount = 4;
+    var totalCount = 5;
     var finalResult = {};
 
     findGeneralInformations(uri, function(result) {
@@ -111,6 +115,14 @@ function findFoodInformations(uri, onResult) {
     findUsage(uri, function(result) {
         count += 1;
         finalResult.usage = result;
+        if (count == totalCount) {
+            onResult(finalResult);
+        }
+    });
+
+    findCategories(uri, function(result) {
+        count += 1;
+        finalResult.categories = result;
         if (count == totalCount) {
             onResult(finalResult);
         }
@@ -394,6 +406,33 @@ function findIngredients(uri, onResult, offset = 0, limit = 20) {
     queryData(queryIngredients, onResult);
 }
 
+/**
+ * findCategories
+ * Trouve les catégories liées à l'objet
+ *  [
+ *      + link
+ *      + label
+ *  ]
+ * @param {String} uri URI de l'objet en question
+ * @param {function(String)} onResult function(String) fonction appelée au résultat de la requête
+ * @param {Integer} offset offest, utilisé pour la navigation en page 
+ * @param {Integer} limit limite en nombre de résultat 
+ */
+function findCategories(uri, onResult, offset = 0, limit = 10) {
+    var queryCategories = basePrefixes +
+        'SELECT ' +
+        ' * ' +
+
+        'WHERE { ' +
+        '  <' + uri + '> <http://purl.org/dc/terms/subject>  ?link . ' +
+        '  ?link rdfs:label ?label . ' +
+        '  FILTER(lang(?label) = "en")' +
+        '} ' +
+        'OFFSET ' + offset + ' ' +
+        'LIMIT ' + limit;
+
+    queryData(queryCategories, onResult);
+}
 
 /**
  * queryData
