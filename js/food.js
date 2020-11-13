@@ -483,8 +483,25 @@ function extractResourceName(link) {
  */
 function populatePage(values) {
     console.log(values);
-    // Name 
-    document.title = values.generalInformations.label.value;
+    // 
+    try{
+        document.title = values.generalInformations.label.value;
+    }
+    catch(e){
+        console.log(e);
+        document.title = "Error";
+        document.querySelector("h1").innerText = "Error :"+data;
+        document.querySelector("#description").innerText = "Il n'y a aucune informations sur cette page"
+        document.querySelector("#types_title").innerText = "";
+        document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
+        document.querySelector("#ingredients_list").innerText = "Aucune donnée trouvée";
+        document.querySelector("#countries_list").innerText = "Aucune donnée trouvée";
+        document.querySelector("#productors_list").innerText = "Aucune donnée trouvée";
+        document.querySelector("#composition").innerText = "Aucune donnée trouvée";
+        document.querySelector("#thumbnail").src = "images/erreur.jpg";
+        return;
+    }
+    
 
     var titleStr = values.generalInformations.label.value;
     if (values.generalInformations.alias != undefined) {
@@ -646,8 +663,6 @@ function populatePage(values) {
  */
 var data = new URL(document.location.href).searchParams.get("data");
 
-if (data != undefined) {
-    var uri = 'http://dbpedia.org/resource/' + data;
+var uri = 'http://dbpedia.org/resource/' + data;
 
-    findFoodInformations(uri, populatePage);
-}
+findFoodInformations(uri, populatePage);
