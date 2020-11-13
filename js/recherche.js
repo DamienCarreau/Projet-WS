@@ -12,8 +12,7 @@ $('document').ready(function() {
                     res = decodeURIComponent(tmp[1]);
             });
     if (res === null) {
-        alert("La recherche n'a pas été spécifié");
-        return;
+        res = "";
     }
 
     getAlimentsPlats(res);
