@@ -10,13 +10,12 @@ $('document').ready(function () {
               tmp = item.split("=");
               if (tmp[0] === "data")
                   res = decodeURIComponent(tmp[1]);
-          });
-  /*        
+          });      
   if (res === null) {
       alert("La recherche n'a pas été spécifié");
       return;
   }
-  */
+  
 
   document.getElementById("txt").innerHTML = "Catégorie : "+res;
 
