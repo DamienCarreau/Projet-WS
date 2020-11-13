@@ -692,3 +692,7 @@ var data = new URL(document.location.href).searchParams.get("data");
 var uri = 'http://dbpedia.org/resource/' + data;
 
 findFoodInformations(uri, populatePage);
+
+function recherche(){
+    document.location.href = "./recherche.html?data=" + document.getElementById("req").value;
+}
