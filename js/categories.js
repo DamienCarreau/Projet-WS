@@ -42,16 +42,12 @@ function getCategories(res,value){
   var querySPARQL =
     'SELECT ?isValueOf '+
     'WHERE { '+
-    '    { ?isValueOf skos:broader <http://dbpedia.org/resource/Category:'+res+'> ';
-    if(value.length !== 0)
-      querySPARQL += 'FILTER regex(substr(str(?isValueOf),38),"'+document.getElementById("req").value+'","i") ';
-
-    querySPARQL += '}UNION '+
-    '    { ?isValueOf <http://purl.org/dc/terms/subject> <http://dbpedia.org/resource/Category:'+res+'> ';
-    if(value.length !== 0)
-      querySPARQL += 'FILTER regex(?isValueOf,"'+document.getElementById("req").value+'","i") ';
-
-    querySPARQL += '}} ORDER BY (?isValueOf)';
+    '    { '+
+    '       ?isValueOf skos:broader <http://dbpedia.org/resource/Category:'+res+'> '+
+    '    } UNION {'+
+    '       ?isValueOf <http://purl.org/dc/terms/subject> <http://dbpedia.org/resource/Category:'+res+'> '+
+    '    } '+
+    '} ORDER BY (?isValueOf)';
   
     
 
