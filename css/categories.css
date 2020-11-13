@@ -52,6 +52,7 @@ h1{
     height: 120px;
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
+    margin : auto;
 }
 
 #corps{
