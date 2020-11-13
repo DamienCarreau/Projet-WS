@@ -1,5 +1,19 @@
 $('document').ready(function() {
 
+    var data = getData();
+
+    getAlimentsPlats(data);
+
+    // Gestion du bouton Recherche
+    $('#target').on('click', function () {
+        location.search = "?data=" + document.getElementById("req").value;
+    });
+});
+
+/**
+ * Retourne le paramètre data passé en paramètre de la methode.
+ */
+function getData(){
     var search;
     var res = null,
     tmp = [];
@@ -12,16 +26,14 @@ $('document').ready(function() {
                     res = decodeURIComponent(tmp[1]);
             });
     if (res === null) {
-        res = "";
+        return "";
     }
+    return res;
+}
 
-    getAlimentsPlats(res);
-
-    $('#target').on('click', function () {
-    location.search = "?data=" + document.getElementById("req").value;
-    });
-});
-
+/**
+ * Récupère les infos et les affiches
+ */
 function getAlimentsPlats(value) {
 
     //La requête SPARQL à proprement parler
@@ -52,37 +64,41 @@ function getAlimentsPlats(value) {
         '     FILTER (lang(?res) = "en" && regex(?res, "' + value + '", "i")). ' +
         ' } ORDER BY (?res) ';
 
-    // On prépare l'URL racine (aussi appelé ENDPOINT) pour interroger DBPedia (ici en français)
+    // endpoint
     var baseURL = "http://dbpedia.org/sparql";
 
-    // On construit donc notre requête à partir de cette baseURL
+    // Construction de la requète
     var queryURL = baseURL + "?" + "query=" + encodeURIComponent(querySPARQL) + "&format=json";
 
     //On crée notre requête AJAX
     var req = new XMLHttpRequest();
     req.open("GET", queryURL, true);
-    req.onreadystatechange = function() {
-        if (req.readyState == 4) {
-            document.getElementById("listAll").innerHTML = "<p>Liste des plats et ingredients</p>";
-            var doc = JSON.parse(req.responseText);
-
-            var div = $("#listAll");
-            $.each(doc.results.bindings,
-                function(index, element) {
-                    try {
-                        div.append($('<a>', {
-                            "text": element.res.value,
-                            "href": "./food.html?data=" + (element.value.value).substr(28)
-                        }));
-                    } catch (e) {}
-                    try {
-                        div.append($('<a>', {
-                            "text": element.res.value,
-                            "href": "./categories.html?data=" + (element.x.value).substr(37)
-                        }));
-                    } catch (e) {}
-                });
-        }
-    }; // the handler
+    req.onreadystatechange = serializeData;
     req.send(null);
+
+    // Analyse et affiche la réponse
+    function serializeData(){
+    if (req.readyState == 4) {
+        document.getElementById("listAll").innerHTML = "<p>Liste des plats et ingredients</p>";
+        var doc = JSON.parse(req.responseText);
+
+        var div = $("#listAll");
+        $.each(doc.results.bindings,
+            function(index, element) {
+                try {
+                    div.append($('<a>', {
+                        "text": element.res.value,
+                        "href": "./food.html?data=" + (element.value.value).substr(28)
+                    }));
+                } catch (e) {}
+                try {
+                    div.append($('<a>', {
+                        "text": element.res.value,
+                        "href": "./categories.html?data=" + (element.x.value).substr(37)
+                    }));
+                } catch (e) {}
+            });
+        }
+    }
 }
+
