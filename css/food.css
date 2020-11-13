@@ -1,3 +1,7 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
 section {
     padding-left: 1%;
     border-radius: 10px;
@@ -7,6 +11,7 @@ section {
 h1 {
     padding-left: 13%;
     font-size: 100px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 header {
