@@ -1,21 +1,29 @@
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
+<html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/recherche.js"></script>
   <title>Recherche</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/recherche.css">
 </head>
 <body>
-    <div id="button">
-        <input type="text" id="req" placeholder="Rechercher">
-        <input type="submit" id="target" value="Rechercher">
 
+    <div class="search-container">
+        <div class="topnav">
+            <a class="active" href="#home" onclick="hideTab()">foodIn</a>
+            <div class="title" href="#about" id="homeButton">Information alimentaire</div>
+        </div>
+
+        <div id="button">
+            <input type="text" id="req" placeholder="Rechercher">
+            <input type="submit" id="target" value="Rechercher">
+
+        </div>
+        <div id="listAll">
+            <div id="loader"></div>
+        </div>
     </div>
-    <div id="listAll">
-        <div id="loader"></div>
-    </div>
-   
+
 </body>
 </html>
