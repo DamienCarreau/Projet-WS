@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/utils.js"></script>
   <script type="text/javascript" src="js/categories.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@500&display=swap" rel="stylesheet">   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@500&display=swap" rel="stylesheet">
   <title>Catégories</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,7 +14,7 @@
   </div>
     <div id="button">
         <input type="text" id="req" placeholder="Rechercher">
-        <input type="submit" id="target" value="Rechercher">
+        <input type="submit" id="target" value="Rechercher" onclick="recherche()">
     </div>
     <div id="center">
       <div id="loader"></div>
