@@ -1,45 +1,9 @@
-$('document').ready(function () {
-
-  var data = getData();
-  console.log(data);
-  
-  document.getElementById("txt").innerHTML = data;
-
-  getCategories(data,"");
-
-  $('#target').on('click', function () {
-    document.location.href = "./recherche.html?data=" + document.getElementById("req").value;
-  });
-});
-
-/**
- * Retourne le paramètre data passé en paramètre de la methode.
- */
-function getData(){
-  var search;
-  var res = null,
-  tmp = [];
-  location.search
-          .substr(1)
-          .split("&")
-          .forEach(function (item) {
-              tmp = item.split("=");
-              if (tmp[0] === "data")
-                  res = decodeURIComponent(tmp[1]);
-          });      
-  if (res === null) {
-      alert("La recherche n'a pas été spécifié");
-      return;
-  }
-  return res;
-}
-
 /**
  * Récupère les infos et les affiches
  */
-function getCategories(res,value){
+function getCategories(res,onResult){
 
-  var querySPARQL =
+  var queryCategories =
     'SELECT ?isValueOf '+
     'WHERE { '+
     '    { '+
@@ -49,51 +13,37 @@ function getCategories(res,value){
     '    } '+
     '} ORDER BY (?isValueOf)';
   
-    
-
-  // endpoint
-  var baseURL="http://dbpedia.org/sparql";
-
-  // construction de la requete
-  var queryURL = baseURL + "?" + "query="+ encodeURIComponent(querySPARQL) + "&format=json";
-  
-  //On crée notre requête AJAX
-  var req = new XMLHttpRequest();
-  req.open("GET", queryURL, true);
-  req.onreadystatechange = serializeData;
-  req.send(null);
-
-  /**
-   * Gère l'affichage des données
-   */
-  function serializeData(){
-    if (req.readyState == 4) {
-      document.getElementById("categories").innerHTML = "<p>Catégories liées</p>";
-      document.getElementById("ingredientsLies").innerHTML = "<p>Ingredients et plats liés à cette catégorie</p>";
-
-      var doc = JSON.parse(req.responseText);
-
-      var categories = $("#categories");
-      var lies = $('#ingredientsLies');
-
-      document.getElementById("loader").style.display = "none";
-
-      $.each(doc.results.bindings,
-        function (index, element) {
-          if((element.isValueOf.value).search("Category") !== -1){
-            var d = $('<div>');
-            d.append($('<a>',{
-              "text": (element.isValueOf.value).substr(37),
-              "href": "?data="+(element.isValueOf.value).substr(37)
-            }));
-            categories.append(d);
-          }else{
-            lies.append($('<a>',{
-              "text": (element.isValueOf.value).substr(28),
-              "href": "./food.html?data="+(element.isValueOf.value).substr(28)
-            }));
-          }
-        });
-    }
-  }
+  queryData(queryCategories,onResult);
 }
+
+/**
+ * Gère l'affichage des données
+ */
+function serializeData(values){
+
+  console.log(values);
+
+  var categorieLiees = document.querySelector("#categories");
+  var ingredientsLies = document.querySelector("#ingredientsLies");
+
+  categorieLiees.innerHTML = "<p>Catégories liées</p>";
+  ingredientsLies.innerHTML = "<p>Ingredients et plats liés à cette catégorie</p>";
+
+  document.getElementById("loader").style.display = "none";
+
+  for (var i = 0; i < values.length; i++) {
+    var link = document.createElement("a");
+    if((values[i].isValueOf.value).search("Category") !== -1){
+      link.innerHTML = (values[i].isValueOf.value).substr(37);
+      link.setAttribute("href","?data="+(values[i].isValueOf.value).substr(37));
+      categorieLiees.appendChild(link);
+    }else{
+      link.innerHTML = (values[i].isValueOf.value).substr(28);
+      link.setAttribute("href","./food.html?data="+(values[i].isValueOf.value).substr(28));
+      ingredientsLies.appendChild(link);
+    }
+  } 
+}
+
+// initialisation de la page, recherche des catégories correspondant au filtre
+getCategories(getParameter(),serializeData);

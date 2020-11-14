@@ -439,36 +439,6 @@ function findCategories(uri, onResult, offset = 0, limit = 10) {
 }
 
 /**
- * queryData
- * @param {String} querySPARQL la query SparQL  
- * @param {function(JsonArray)} onResult fonction appelée lorsque le résultat arrive 
- */
-function queryData(querySPARQL, onResult) {
-    //On prépare l'URL racine (aussi appelé ENDPOINT) pour interroger DBPedia (ici en français)
-    var baseURL = "http://dbpedia.org/sparql";
-
-    // On construit donc notre requête à partir de cette baseURL
-    var queryURL = baseURL + "?" + "query=" + encodeURIComponent(querySPARQL) + "&format=json";
-
-    console.log("query data : QUERY = \n*******\n" + querySPARQL + "\n********");
-
-    //On crée notre requête AJAX
-    var req = new XMLHttpRequest();
-    req.open("GET", queryURL, true);
-    req.onreadystatechange = myCode; // the handler
-    req.send(null);
-
-    function myCode() {
-        if (req.readyState == 4) {
-            // Parse the result into JSON
-            var val = JSON.parse(req.responseText);
-            // Return only the results' array
-            onResult(val.results.bindings);
-        }
-    }
-}
-
-/**
  * From a link, extract the part after the last "/", used to store only the resource Name in 
  * uri "dbpedia.org/resource"
  * @param {String} link the link to extract the resource from
@@ -696,7 +666,3 @@ var data = new URL(document.location.href).searchParams.get("data");
 var uri = 'http://dbpedia.org/resource/' + data;
 
 findFoodInformations(uri, populatePage);
-
-function recherche(){
-    document.location.href = "./recherche.html?data=" + document.getElementById("req").value;
-}
