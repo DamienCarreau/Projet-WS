@@ -1,11 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@500&display=swap" rel="stylesheet">   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@500&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="js/utils.js"></script>
   <script type="text/javascript" src="js/recherche.js"></script>
   <title>Recherche</title>
   <link rel="stylesheet" href="css/style.css">
@@ -14,20 +13,18 @@
 
     <div class="search-container">
         <div class="topnav">
-            <a id="maintitre" class="active" href="recherche.html">M!AM</a>
+            <a id="maintitre" class="active" href="recherche.html" onclick="hideTab()">M!AM</a>
             <div class="title" href="#about" id="homeButton">Database alimentaire</div>
         </div>
 
         <div id="button">
             <input type="text" id="req" placeholder="Rechercher">
-            <input type="submit" id="target" value="Rechercher">
+            <input type="submit" id="target" value="Rechercher" onclick="recherche()">
 
         </div>
-        <section id="listColor">
-            <div id="listAll">
-                <div id="loader"></div>
-            </div>
-        </section>
+        <div id="listAll">
+            <div id="loader"></div>
+        </div>
     </div>
 
 </body>
