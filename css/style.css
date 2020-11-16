@@ -1,5 +1,5 @@
 body {
-    background:url(../images/bi.jpg);
+    background-image:url('../images/bi.jpg');
     background-color: #c1faef;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
