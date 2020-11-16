@@ -1,4 +1,5 @@
 body {
+    background-image:url('../images/bi.jpg');
     background-color: #c1faef;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
@@ -69,7 +70,7 @@ border-radius: 25px 0 0 25px;
     height: 120px;
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
-    margin-left:96vh;
+    margin-left:11vh;
 }
 
 #button {
@@ -78,8 +79,8 @@ border-radius: 25px 0 0 25px;
 
 #listColor{
     background:#ffc107;
-    margin-right:60%;
-    margin-left:15%;
+    margin-right:35%;
+    margin-left:35%;
 }
 
 #listAll {
@@ -103,16 +104,7 @@ border-radius: 25px 0 0 25px;
     padding: 10px 15px;
 }
 
-#corps{
-    display: flex;
-    width: 100%;
-}
 
-#categories, #ingredientsLies{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
 
 /* Safari */
 @-webkit-keyframes spin {
