@@ -36,11 +36,14 @@ h1 {
     margin-bottom: 0px;
     font-size: 100px;
     font-family: 'Montserrat', sans-serif;
+    color:gold;
 }
 
 #alias {
     padding-left: 13%;
     margin-bottom: 40px;
+    color:gold;
+    font-size:200%;
 }
 
 #recherche {
@@ -189,7 +192,5 @@ input {
 .column2 {
     float: left;
     width: 40%;
-    padding-left: 10px;
-    
-    
+    padding-left: 20px;
 }
