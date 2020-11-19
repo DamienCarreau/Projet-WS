@@ -21,6 +21,8 @@ function getCategories(res, onResult) {
  */
 function serializeData(values) {
 
+    document.querySelector("h1").innerText = getParameter().replaceAll("_", " ");
+
     console.log(values);
 
     var categorieLiees = document.querySelector("#categories");
@@ -46,4 +48,5 @@ function serializeData(values) {
 }
 
 // initialisation de la page, recherche des catégories correspondant au filtre
+
 getCategories(getParameter(), serializeData);
