@@ -1,26 +1,31 @@
 body {
-    background-image:url('../images/bi.jpg');
-    background-color: #c1faef;
+    background: #FFF3EB;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
+a {
+    color: #914D26;
+}
+
 .topnav {
     overflow: hidden;
-    background-color: #ccf5eb;
+    background-color: #914D26;
+    color: #ffffff;
     padding-bottom: 1.25%;
     margin-bottom: 1.75%;
 }
 
 .topnav a {
     display: block;
-    color: black;
+    color: #ffffff;
     text-align: center;
     text-decoration: dotted;
     font-size: 100px;
@@ -30,56 +35,64 @@ html, body {
     font-family: 'Big Shoulders Inline Display', cursive;
 }
 
-input{
-    position:relative;
-    display:inline-block;
-    font-size:20px;
+input {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
     transition: .5s;
 }
 
-#req{
-background: #fff;
-width:340px;
-height:50px;
-border:none;
-outline:none;
-padding: 0 25px;
-border-radius: 25px 0 0 25px;
+#req {
+    background: #fff;
+    width: 340px;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 0 25px;
+    border-radius: 25px 0 0 25px;
 }
 
-#target{
-    position:relative;
+#target {
+    position: relative;
     border-radius: 0 25px 25px 0;
     width: 150px;
     height: 50px;
-    border:none;
-    outline:none;
-    cursor:pointer;
-    background: #ffc107;
-
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    background: #914D26;
 }
 
 #loader {
-    border: 16px solid #f3f3f3;
+    border: 10px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid #3498db;
-    width: 120px;
-    height: 120px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
+    border-top: 10px solid #914D26;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
     animation: spin 2s linear infinite;
     /*margin-left:11vh;*/
     margin-left: auto;
     margin-right: auto;
 }
 
+
+/* #loader:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+} */
+
 #button {
     padding-bottom: 10px;
 }
 
-#listColor{
-    background:#ffc107;
-    margin-right:35%;
-    margin-left:35%;
+#listColor {
+    margin-right: 35%;
+    margin-left: 35%;
 }
 
 #listAll {
@@ -99,13 +112,12 @@ border-radius: 25px 0 0 25px;
 }
 
 
-
 /* Safari */
+
 @-webkit-keyframes spin {
     0% {
         -webkit-transform: rotate(0deg);
     }
-
     100% {
         -webkit-transform: rotate(360deg);
     }
@@ -115,20 +127,20 @@ border-radius: 25px 0 0 25px;
     0% {
         transform: rotate(0deg);
     }
-
     100% {
         transform: rotate(360deg);
     }
 }
 
-#corps section{
+#corps section {
     display: flex;
     justify-content: space-around;
     margin-left: 15%;
     margin-right: 15%;
 }
 
-#categories, #ingredientsLies {
+#categories,
+#ingredientsLies {
     display: flex;
     flex-direction: column;
     flex-basis: 50%;

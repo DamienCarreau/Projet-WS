@@ -1,7 +1,7 @@
 /**
  * Récupère les infos et les affiches
  */
-function getAlimentsPlats(filter,onResult) {
+function getAlimentsPlats(filter, onResult) {
 
     var queryRecherche =
         'PREFIX dbo: <http://dbpedia.org/ontology/> ' +
@@ -30,31 +30,31 @@ function getAlimentsPlats(filter,onResult) {
         '     FILTER (lang(?res) = "en" && regex(?res, "' + filter + '", "i")). ' +
         ' } ORDER BY (?res) ';
 
-    queryData(queryRecherche,onResult);
+    queryData(queryRecherche, onResult);
 }
 
 // Analyse et affiche la réponse
-function serializeData(values){
+function serializeData(values) {
     console.log(values);
 
     var resultList = document.querySelector("#listAll");
 
-    resultList.innerHTML = "<p>Liste des plats et ingredients</p>";
+    resultList.innerHTML = ""; //<p>Liste des plats et ingredients</p>";
 
     for (var i = 0; i < values.length; i++) {
         var link = document.createElement("a");
-        try{
+        try {
             link.innerHTML = values[i].res.value;
-            link.setAttribute("href","./food.html?data=" +(values[i].value.value).substr(28));
-        }catch(e){
+            link.setAttribute("href", "./food.html?data=" + (values[i].value.value).substr(28));
+        } catch (e) {
             link.innerHTML = values[i].res.value;
-            link.setAttribute("href","./categories.html?data=" +(values[i].x.value).substr(37));
+            link.setAttribute("href", "./categories.html?data=" + (values[i].x.value).substr(37));
         }
         resultList.appendChild(link);
-    }    
+    }
 }
 
 
 
 // initialisation de la page, recherche des aliments correspondant au filtre
-getAlimentsPlats(getParameter(),serializeData);
+getAlimentsPlats(getParameter(), serializeData);
