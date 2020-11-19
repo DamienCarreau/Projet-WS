@@ -7,6 +7,7 @@ var basePrefixes = "" +
     'PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> ' +
     'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ';
 
+let noDataStr = "No data.";
 /*
 STRUCTURE DU RESULTAT : 
 generalInformations 
@@ -471,11 +472,11 @@ function populatePage(values) {
         document.querySelector("h1").innerText = "Error :" + data;
         document.querySelector("#description").innerText = "Il n'y a aucune informations sur cette page"
         document.querySelector("#types_title").innerText = "";
-        document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
-        document.querySelector("#ingredients_list").innerText = "Aucune donnée trouvée";
-        document.querySelector("#countries_list").innerText = "Aucune donnée trouvée";
-        document.querySelector("#productors_list").innerText = "Aucune donnée trouvée";
-        document.querySelector("#composition").innerText = "Aucune donnée trouvée";
+        document.querySelector("#receipes_list").innerText = noDataStr;
+        document.querySelector("#ingredients_list").innerText = noDataStr;
+        document.querySelector("#countries_list").innerText = noDataStr;
+        document.querySelector("#productors_list").innerText = noDataStr;
+        document.querySelector("#composition").innerText = noDataStr;
         document.querySelector("#thumbnail").src = "images/erreur.jpg";
         return;
     }
@@ -529,7 +530,7 @@ function populatePage(values) {
         }
     }
     if (empty) {
-        document.querySelector("#composition").innerText = "Aucune donnée trouvée";
+        document.querySelector("#composition").innerText = noDataStr;
     }
 
     // Origin 
@@ -563,7 +564,7 @@ function populatePage(values) {
         empty = false;
     }
     if (empty) {
-        document.querySelector("#countries_list").innerText = "Aucune donnée trouvée";
+        document.querySelector("#countries_list").innerText = noDataStr;
     }
 
     // Productors
@@ -581,7 +582,7 @@ function populatePage(values) {
         empty = false;
     }
     if (empty) {
-        document.querySelector("#productors_list").innerText = "Aucune donnée trouvée";
+        document.querySelector("#productors_list").innerText = noDataStr;
     }
 
     // Usage
@@ -628,8 +629,8 @@ function populatePage(values) {
         emptyIngredients = false;
     }
     if (emptyReceipes && emptyIngredients) {
-        document.querySelector("#receipes_list").innerText = "Aucune donnée trouvée";
-        document.querySelector("#ingredients_list").innerText = "Aucune donnée trouvée";
+        document.querySelector("#receipes_list").innerText = noDataStr;
+        document.querySelector("#ingredients_list").innerText = noDataStr;
     } else {
         if (emptyReceipes) {
             document.querySelector("#receipes_title").innerText = "";
@@ -654,7 +655,7 @@ function populatePage(values) {
         empty = false;
     }
     if (empty) {
-        document.querySelector("#categories_list").innerText = "Aucune donnée trouvée";
+        document.querySelector("#categories_list").innerText = noDataStr;
     }
 }
 
